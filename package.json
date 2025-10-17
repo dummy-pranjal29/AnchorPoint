@@ -1,0 +1,27 @@
+{
+  "name": "anchorpoint",
+  "version": "1.0.0",
+  "description": "A calm, organized space to plan, discuss, and deliver projects together",
+  "keywords": [
+    "backend",
+    "API",
+    "creation",
+    "project management",
+    "team collaboration",
+    "task tracking",
+    "to-do list",
+    "milestones",
+    "productivity",
+    "project planning",
+    "project tracker",
+    "project dashboard",
+    "task management"
+  ],
+  "license": "ISC",
+  "author": "aditya pranjal",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "dev": "node index.js"
+  }
+}
