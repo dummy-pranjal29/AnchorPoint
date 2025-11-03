@@ -21,6 +21,9 @@
   "author": "aditya pranjal",
   "main": "index.js",
   "type": "module",
+  "engines": {
+    "node": ">=18.0.0"
+  },
   "scripts": {
     "dev": "nodemon src/index.js",
     "start": "node src/index.js"

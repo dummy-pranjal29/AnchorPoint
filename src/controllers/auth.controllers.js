@@ -2,7 +2,7 @@ import { User } from "../models/users.models.js";
 import { ApiResponse } from "../utils/api-response.js";
 import { ApiError } from "../utils/api-error.js";
 import { asyncHandler } from "../utils/async-handler.js";
-import { sendEmail } from "../utils/mail.js";
+import { sendEmail, emailVerificationMailgenContent } from "../utils/mail.js";
 
 const generateAccessandRefreshTokens = async (userId) => {
   try {
@@ -21,10 +21,10 @@ const generateAccessandRefreshTokens = async (userId) => {
 };
 
 const registerUser = asyncHandler(async (req, res) => {
-  const { username, email, password, role } = req.body;
+  const { userName, email, password, role } = req.body;
 
   const existingUser = await User.findOne({
-    $or: [{ username }, { email }],
+    $or: [{ userName }, { email }],
   });
 
   if (existingUser) {
@@ -32,7 +32,7 @@ const registerUser = asyncHandler(async (req, res) => {
   }
 
   const user = await User.create({
-    username,
+    userName,
     email,
     password,
     isEmailVerified: false,
@@ -49,7 +49,7 @@ const registerUser = asyncHandler(async (req, res) => {
     email: user?.email,
     sunject: "Email Verification - AnchorPoint",
     mailgenContent: emailVerificationMailgenContent(
-      user.username,
+      user.userName,
       `${req.protocol}://${req.get(
         "host",
       )}/api/auth/verify-email?${unHashedToken}`,
